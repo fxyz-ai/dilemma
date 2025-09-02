@@ -5,7 +5,7 @@ import { gameOver, increaseScore, rightAnswer } from "../features/tallySlice";
 import ToggleButton from "../ui/ToggleButton";
 
 const QuestionsList = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { items, status, error } = useSelector((state) => state.questions);
   const [asked, setAsked] = useState([]);
   const [currQues, setCurrQues] = useState(null);

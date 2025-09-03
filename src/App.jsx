@@ -9,13 +9,13 @@ function App() {
 
   return (
     <>
-      {!over?(<div className="w-full h-screen flex flex-col bg-orange-400 items-center justify-center">
+      {!over ? <div className="w-full h-screen flex flex-col bg-orange-400 items-center justify-center">
         {start || (
           <h1 className="text-8xl font-bold font-anton uppercase">
             Dilemma
           </h1>
         )}
-        {start ? (
+        {start ? (  
           <QuestionsList />
         ) : (
           <button
@@ -25,8 +25,8 @@ function App() {
             START
           </button>
         )}
-      </div>)
-      :(<Result/>)}
+      </div>
+      :<Result/>}
     </>
   );
 }

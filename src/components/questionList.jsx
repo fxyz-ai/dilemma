@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchQuestions } from "../features/questionSlice";
 import { gameOver, increaseScore, rightAnswer } from "../features/tallySlice";
 import ToggleButton from "../ui/ToggleButton";
+import { Button, Backdrop, CircularProgress } from "@mui/material";
 
 const QuestionsList = () => {
   const dispatch = useDispatch()
@@ -10,7 +11,7 @@ const QuestionsList = () => {
   const [asked, setAsked] = useState([]);
   const [currQues, setCurrQues] = useState(null);
   const [currAns, setCurrAns] = useState(null);
-
+  const open=true
   // console.log(currAns)
   useEffect(() => {
     if (status === "idle") {
@@ -23,9 +24,6 @@ const QuestionsList = () => {
       pickQues();
     }
   }, [items]);
-
-  if (status === "loading") return <p>Loading...</p>;
-  if (status === "failed") return <p>Error: {error}</p>;
 
   function pickQues() {
     if (asked.length >= 10) {
@@ -53,6 +51,18 @@ const QuestionsList = () => {
     }
     pickQues();
   }
+  
+  if (status === "loading") {return (
+    <>
+      <Backdrop
+        sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+        open
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    </>
+  );}
+  if (status === "failed") return <p>Error: {error}</p>;
   return (
     <>
       <a className="no-underline" href="">
